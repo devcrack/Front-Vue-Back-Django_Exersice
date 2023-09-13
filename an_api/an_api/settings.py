@@ -11,11 +11,13 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
+import json
+from configparser import ConfigParser
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
+CONFIG_PATH = './api.conf'
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
@@ -26,7 +28,6 @@ SECRET_KEY = 'django-insecure-tb0_5y!$f45w%!uv2gcz2*!^_v8(6k_1=#3-(a0urdyw78m&k$
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
 
 # Application definition
 
@@ -73,12 +74,17 @@ WSGI_APPLICATION = 'an_api.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
+with open('config.json') as config_file:
+    config = json.load(config_file)
+
+DATABASES = config.get('DATABASES', {})
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.posgresql',
+#         'NAME': '',
+#     }
+# }
 
 
 # Password validation
