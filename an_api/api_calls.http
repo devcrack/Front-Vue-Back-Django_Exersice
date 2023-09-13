@@ -1,0 +1,15 @@
+POST http://127.0.0.1:8000/api/v1/dj-rest-auth/login/
+Content-Type: application/json
+
+{
+  "email": "admin@mail.com",
+  "password": "mientras123"
+}
+
+
+###
+
+POST http://127.0.0.1:8000/api/v1/dj-rest-auth/logout/
+Content-Type: application/json
+Authorization: Token a0c8af8d404199439be7c40e355221b397ab42c6
+
