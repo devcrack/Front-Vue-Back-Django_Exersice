@@ -29,6 +29,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+AUTH_USER_MODEL = 'UserProfile.CustomUser'
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -38,6 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # Local
+    'UserProfile.apps.UserprofileConfig',
 ]
 
 MIDDLEWARE = [
@@ -74,7 +78,7 @@ WSGI_APPLICATION = 'an_api.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-with open('config.json') as config_file:
+with open('./config.json') as config_file:
     config = json.load(config_file)
 
 DATABASES = config.get('DATABASES', {})
