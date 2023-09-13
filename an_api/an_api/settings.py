@@ -34,16 +34,21 @@ AUTH_USER_MODEL = 'UserProfile.CustomUser'
 # Application definition
 
 INSTALLED_APPS = [
+    # std-django
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
     # 3rd-party
     'rest_framework',
     'rest_framework.authtoken',
     'dj_rest_auth',
+    'allauth',
+    'allauth.socialaccount',
+    'dj_rest_auth.registration',
     # Local
     'UserProfile.apps.UserprofileConfig',
 ]
@@ -76,6 +81,11 @@ TEMPLATES = [
     },
 ]
 
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+
+SITE_ID = 1
+
 WSGI_APPLICATION = 'an_api.wsgi.application'
 
 
@@ -87,14 +97,16 @@ with open('./config.json') as config_file:
 
 DATABASES = config.get('DATABASES', {})
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.posgresql',
-#         'NAME': '',
-#     }
-# }
+# About Mail server
+email_config = config.get('EMAIL')
 
+EMAIL_BACKEND = email_config.get('EMAIL_BACKEND')
+EMAIL_USE_TLS = email_config.get('EMAIL_USE_TLS')
+EMAIL_PORT = email_config.get('EMAIL_PORT')
+EMAIL_HOST_USER = email_config.get('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = email_config.get('EMAIL_HOST_PASSWORD')
 
+SITE_ID = 1
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
 
@@ -146,3 +158,4 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.TokenAuthentication',
     ]
 }
+
