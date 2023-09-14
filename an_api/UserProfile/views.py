@@ -1,8 +1,8 @@
 # 3rd-party
-from django.shortcuts import render
 from django.conf import settings
 from django.http import HttpResponseRedirect, HttpResponse
-
+from dj_rest_auth.registration.views import RegisterView
+from UserProfile.serializers import CustomUserSerializer
 
 # Create your views here.
 
@@ -19,3 +19,8 @@ def password_reset_confirm_redirect(request, uidb64, token) -> HttpResponseRedir
     return HttpResponseRedirect(
         f"{settings.PASSWORD_RESET_CONFIRM_REDIRECT_BASE_URL}{uidb64}/{token}/"
     )
+
+
+class CustomSignupView(RegisterView):
+    serializer_class = CustomUserSerializer
+
