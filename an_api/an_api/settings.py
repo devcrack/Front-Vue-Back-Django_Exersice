@@ -42,11 +42,13 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.sites',
+
     # 3rd-party
     'rest_framework',
     'rest_framework.authtoken',
     'dj_rest_auth',
     'allauth',
+    'allauth.account',
     'allauth.socialaccount',
     'dj_rest_auth.registration',
     # Local
@@ -61,6 +63,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'allauth.account.middleware.AccountMiddleware',
 ]
 
 ROOT_URLCONF = 'an_api.urls'
@@ -92,7 +95,7 @@ WSGI_APPLICATION = 'an_api.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-with open('./config.json') as config_file:
+with open('./local_config.json') as config_file:
     config = json.load(config_file)
 
 DATABASES = config.get('DATABASES', {})
@@ -101,13 +104,22 @@ DATABASES = config.get('DATABASES', {})
 email_config = config.get('EMAIL')
 
 EMAIL_BACKEND = email_config.get('EMAIL_BACKEND')
+EMAIL_HOST = email_config.get('EMAIL_HOST')
 EMAIL_USE_TLS = email_config.get('EMAIL_USE_TLS')
 EMAIL_PORT = email_config.get('EMAIL_PORT')
 EMAIL_HOST_USER = email_config.get('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = email_config.get('EMAIL_HOST_PASSWORD')
 
+
 SITE_ID = 1
 # Password validation
+
+# <EMAIL_CONFIRM_REDIRECT_BASE_URL>/<key>
+EMAIL_CONFIRM_REDIRECT_BASE_URL = 'http://localhost:3000/api/v0/email/confirm/'
+
+# <PASSWORD_RESET_CONFIRM_REDIRECT_BASE_URL>/<uidb64>/<token>/
+PASSWORD_RESET_CONFIRM_REDIRECT_BASE_URL = 'http://localhost:3000/api/v0/password-reset/confirm/'
+
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
