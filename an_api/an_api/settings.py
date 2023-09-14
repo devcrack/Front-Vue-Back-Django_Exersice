@@ -17,7 +17,7 @@ from configparser import ConfigParser
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-CONFIG_PATH = './api.conf'
+CONFIG_PATH = './local_config.json'
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'dj_rest_auth.registration',
+    # 'corsheaders',
     # Local
     'UserProfile.apps.UserprofileConfig',
 ]
@@ -58,6 +59,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    # 'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -95,7 +97,7 @@ WSGI_APPLICATION = 'an_api.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-with open('./local_config.json') as config_file:
+with open(CONFIG_PATH) as config_file:
     config = json.load(config_file)
 
 DATABASES = config.get('DATABASES', {})
@@ -115,10 +117,10 @@ SITE_ID = 1
 # Password validation
 
 # <EMAIL_CONFIRM_REDIRECT_BASE_URL>/<key>
-EMAIL_CONFIRM_REDIRECT_BASE_URL = 'http://localhost:3000/api/v0/email/confirm/'
+EMAIL_CONFIRM_REDIRECT_BASE_URL = 'http://localhost:8000/an_api/registration/custom/custom-account-confirm-email/'
 
 # <PASSWORD_RESET_CONFIRM_REDIRECT_BASE_URL>/<uidb64>/<token>/
-PASSWORD_RESET_CONFIRM_REDIRECT_BASE_URL = 'http://localhost:3000/api/v0/password-reset/confirm/'
+PASSWORD_RESET_CONFIRM_REDIRECT_BASE_URL = 'http://localhost:8000/api/v0/password-reset/confirm/'
 
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
 
@@ -170,4 +172,17 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.TokenAuthentication',
     ]
 }
+#
+# ACCOUNT_EMAIL_REQUIRED = True
+# ACCOUNT_EMAIL_VERIFICATION = "mandatory"
+# Cors headers configuration
+# CORS_ALLOWED_ORIGINS = [
+#     "http://localhost:8000",
+#     "http://localhost:8000",]
+#
+# CORS_ORIGIN_ALLOW_ALL = True
+# CORS_ALLOW_CREDENTIALS = True
 
+REST_AUTH = {
+    'SESSION_LOGIN': False
+}
