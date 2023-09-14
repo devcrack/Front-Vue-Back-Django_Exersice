@@ -19,9 +19,7 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api-auth/', include('rest_framework.urls')),
-    # Added for log in, log out, and password reset API endpoints
-    path('api/v0/dj-rest-auth/', include('dj_rest_auth.urls')),
-    path('api/v0/dj-rest-auth/registration/', include('dj_rest_auth.registration.urls')),
-    path('api/v0/', include('UserProfile.urls')),
+    path('an_api/auth/', include('dj_rest_auth.urls')),
+    path('an_api/registration/', include('dj_rest_auth.registration.urls')),
+    path('an_api/registration/custom/', include('UserProfile.urls')),
 ]
