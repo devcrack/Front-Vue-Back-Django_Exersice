@@ -1,15 +1,41 @@
-POST http://127.0.0.1:8000/api/v1/dj-rest-auth/login/
+#  an_api/auth/
+### /auth/login/
+POST http://127.0.0.1:8000/an_api/auth/login/
 Content-Type: application/json
 
 {
-  "email": "admin@mail.com",
+  "username": "admin@mail.com",
   "password": "mientras123"
 }
 
 
-###
-
-POST http://127.0.0.1:8000/api/v1/dj-rest-auth/logout/
+### /auth/logout/
+POST http://127.0.0.1:8000/an_api/auth/logout/
 Content-Type: application/json
-Authorization: Token a0c8af8d404199439be7c40e355221b397ab42c6
+Authorization: Token 19350e72856707e964711f8d256c174c273ef1c3
 
+
+### /auth/user/
+GET http://127.0.0.1:8000/an_api/auth/user/
+
+
+# /an_api/registration/
+### //
+POST http://127.0.0.1:8000/an_api/registration/
+Content-Type: application/json
+
+{
+  "username": "my_username",
+  "email": "a_mail@mail.com",
+  "password1": "test",
+  "password2": "test"
+}
+
+
+### verify-email/
+POST http://127.0.0.1:8000/an_api/registration/verify-email/
+Content-Type: application/json
+
+{
+  "key": "OA:1qggpL:VcCwZB_X35_kPOu5Qs_NxuKrWU-POJIJIO1lTHVdvLw"
+}
