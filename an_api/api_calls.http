@@ -17,6 +17,7 @@ Authorization: Token 19350e72856707e964711f8d256c174c273ef1c3
 
 ### /auth/user/
 GET http://127.0.0.1:8000/an_api/auth/user/
+Authorization: Token a2cd70c0b77f04ecfac2692c22ea8edea40159cf
 
 
 # /an_api/registration/
@@ -25,10 +26,12 @@ POST http://127.0.0.1:8000/an_api/registration/
 Content-Type: application/json
 
 {
-  "username": "my_username",
-  "email": "a_mail@mail.com",
-  "password1": "test",
-  "password2": "test"
+  "username": "a_username2",
+  "email": "awesome_mail1@mail.com",
+  "password1": "mientras123",
+  "password2": "mientras123",
+  "first_name": "Carlos",
+  "last_name": "Pensantes"
 }
 
 
