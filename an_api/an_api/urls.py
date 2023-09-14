@@ -21,5 +21,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api-auth/', include('rest_framework.urls')),
     # Added for log in, log out, and password reset API endpoints
-    path('api/v1/dj-rest-auth/', include('dj_rest_auth.urls')),
+    path('api/v0/dj-rest-auth/', include('dj_rest_auth.urls')),
+    path('api/v0/dj-rest-auth/registration/', include('dj_rest_auth.registration.urls')),
+    path('api/v0/', include('UserProfile.urls')),
 ]
