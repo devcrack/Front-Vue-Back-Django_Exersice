@@ -4,7 +4,7 @@ POST http://127.0.0.1:8000/an_api/auth/login/
 Content-Type: application/json
 
 {
-  "username": "admin@mail.com",
+  "email": "andrea_del_arco@mail.com",
   "password": "mientras123"
 }
 
@@ -12,26 +12,58 @@ Content-Type: application/json
 ### /auth/logout/
 POST http://127.0.0.1:8000/an_api/auth/logout/
 Content-Type: application/json
-Authorization: Token 19350e72856707e964711f8d256c174c273ef1c3
+Authorization: Token 5726b9cfaa2ddea19ced469f273e5bd1775d5e8f
 
 
 ### /auth/user/
 GET http://127.0.0.1:8000/an_api/auth/user/
-Authorization: Token a2cd70c0b77f04ecfac2692c22ea8edea40159cf
+Authorization: Token 963281d29a2fda4a5a40bfb03731c637a8736e91
 
 
 # /an_api/registration/
-### //
+### NOT EXPOSED
 POST http://127.0.0.1:8000/an_api/registration/
 Content-Type: application/json
 
 {
-  "username": "a_username2",
-  "email": "awesome_mail1@mail.com",
+  "username": "andrew",
+  "email": "andrea_del_arco@mail.com",
   "password1": "mientras123",
   "password2": "mientras123",
-  "first_name": "Carlos",
-  "last_name": "Pensantes"
+  "first_name": "Andreita",
+  "last_name": "Bonita"
+}
+
+
+
+### /an_api/registration/user/
+POST http://127.0.0.1:8000/an_api/registration/user/
+Content-Type: application/json
+Authorization: Token 0faa753ee291458e5cbb540216c654d90297418c
+
+{
+  "username": "andrew",
+  "email": "andrea_del_arco@mail.com",
+  "password1": "mientras123",
+  "password2": "mientras123",
+  "first_name": "Andreita",
+  "last_name": "Bonita",
+  "group": "manager"
+}
+
+### org-user/
+POST http://127.0.0.1:8000/an_api/registration/org-user/
+Content-Type: application/json
+Authorization: Token 4215f00a79efcfbbcafc9e4866af3d771c4f109f
+
+{
+  "username": "anton",
+  "email": "anton_del_arco@mail.com",
+  "password1": "mientras123",
+  "password2": "mientras123",
+  "first_name": "Antonello",
+  "last_name": "Feo",
+  "group": "worker"
 }
 
 
@@ -42,3 +74,7 @@ Content-Type: application/json
 {
   "key": "OA:1qggpL:VcCwZB_X35_kPOu5Qs_NxuKrWU-POJIJIO1lTHVdvLw"
 }
+
+
+
+

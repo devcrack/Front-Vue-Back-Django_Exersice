@@ -14,7 +14,7 @@ class CustomUser(AbstractUser):
     email = models.EmailField(_("email address"), blank=False, unique=True)
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
-
+    # Using a custom query manager for this model
     objects = CustomUserManager()
 
     def __str__(self):
