@@ -6,7 +6,7 @@ from django.contrib.auth import get_user_model
 
 
 class CustomUserSerializer(RegisterSerializer):
-    first_name = serializers.CharField(max_length=150, allow_blank=True, required=False)
+    first_name = serializers.CharField(max_length=150, allow_blank=True, required=True)
     last_name = serializers.CharField(max_length=150, allow_blank=False, required=True)
     email = serializers.EmailField(allow_blank=False)
 
