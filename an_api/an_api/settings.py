@@ -54,6 +54,8 @@ INSTALLED_APPS = [
     # 'corsheaders',
     # Local
     'UserProfile.apps.UserprofileConfig',
+    'Products.apps.ProductsConfig',
+    'Branches.apps.BranchesConfig',
 ]
 
 MIDDLEWARE = [
