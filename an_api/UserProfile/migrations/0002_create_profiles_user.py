@@ -10,7 +10,7 @@ def create_user_profiles_with_groups(apps, schema_editor):
 
         Group names are defined in the group_names list and are created if they do not exist.
     """
-    group_names = ['worker', 'consumer', 'feeder']
+    group_names = ['manager', 'worker', 'consumer', 'feeder']
 
     for group_name in group_names:
         Group.objects.get_or_create(name=group_name)
