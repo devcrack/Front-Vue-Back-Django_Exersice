@@ -172,8 +172,10 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.TokenAuthentication',
     ]
 }
-#
-# ACCOUNT_EMAIL_REQUIRED = True
+# Django all auth
+ACCOUNT_AUTHENTICATION_METHOD = 'email'
+ACCOUNT_EMAIL_REQUIRED = True
+
 # ACCOUNT_EMAIL_VERIFICATION = "mandatory"
 # Cors headers configuration
 # CORS_ALLOWED_ORIGINS = [
