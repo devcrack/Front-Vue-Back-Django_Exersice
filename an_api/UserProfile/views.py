@@ -3,11 +3,15 @@ from django.contrib.auth.models import Group
 from django.conf import settings
 from django.http import HttpResponseRedirect, HttpResponse
 from dj_rest_auth.registration.views import RegisterView
-from rest_framework.response import Response
 from rest_framework import status
-# Local
-from UserProfile.serializers import CustomUserSerializer, LowLevelUserSerializer
+from rest_framework.response import Response
+from rest_framework.permissions import IsAuthenticated
 
+# Local
+from an_api.base_permissions import HasGroupPermission
+from UserProfile.serializers import (CustomUserSerializer,
+                                     LowLevelUserSerializer,
+                                     LowestLevelUserSerializer)
 
 def email_confirm_redirect(request, key) -> HttpResponse:
     # return HttpResponseRedirect(
@@ -27,24 +31,24 @@ class CustomSignupView(RegisterView):
     serializer_class = CustomUserSerializer
 
 
-class SignupLowLeveUser(RegisterView):
+class SignupLowLeveUserView(RegisterView):
     serializer_class = LowLevelUserSerializer
+    permission_classes = [IsAuthenticated, HasGroupPermission]
+
+    def __get_group(self, group_name):
+        return Group.objects.filter(name=group_name).first()
 
     def create(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
-        user = self.perform_create(serializer)
-        headers = self.get_success_headers(serializer.data)
-        data = self.get_response_data(user)
+        user = serializer.save(self.request)
+        group = self.__get_group(serializer.validated_data.get('group'))
+        user.groups.add(group)
+        return Response(status=status.HTTP_201_CREATED)
 
-        if data:
-            response = Response(
-                data,
-                status=status.HTTP_201_CREATED,
-                headers=headers,
-            )
-        else:
-            response = Response(status=status.HTTP_204_NO_CONTENT, headers=headers)
 
-        return response
+class SignupLowestLeveUsers(SignupLowLeveUserView):
+    required_groups = {'POST': ['manager', ]}
+    serializer_class = LowestLevelUserSerializer
+
 
