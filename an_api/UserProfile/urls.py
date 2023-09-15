@@ -1,6 +1,6 @@
 # Local
-from UserProfile.views import (CustomSignupView,
-                               SignupLowLeveUser,
+from UserProfile.views import (SignupLowLeveUserView,
+                               SignupLowestLeveUsers,
                                email_confirm_redirect,
                                password_reset_confirm_redirect)
 # 3rd-party
@@ -12,6 +12,8 @@ urlpatterns = [
     path('account-confirm-email/<str:key>/', email_confirm_redirect, name="account_confirm_email"),
     path('password/reset/confirm/<str:uidb64>/<str:token>/', password_reset_confirm_redirect,
          name="password_reset_confirm"),
-    path('', CustomSignupView.as_view(), name='custom_rest_register'),
-    path('user/', SignupLowLeveUser.as_view(), name='low_level_rest_register'),
+    # Not exposed for security Issues
+    # path('', CustomSignupView.as_view(), name='custom_rest_register'),
+    path('user/', SignupLowLeveUserView.as_view(), name='low_level_rest_register'),
+    path('org-user/', SignupLowestLeveUsers.as_view(), name='lowest_level_rest_register')
 ]
