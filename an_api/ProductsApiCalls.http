@@ -1,0 +1,8 @@
+### /an_api/categories/
+POST http://127.0.0.1:8000/an_api/categories/
+Content-Type: application/json
+Authorization: Token 53f1bcacba5494005b2cad4c10038c834aa49d7e
+
+{
+  "name": "Ropa"
+}
