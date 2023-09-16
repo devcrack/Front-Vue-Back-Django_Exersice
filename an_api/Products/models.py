@@ -16,6 +16,7 @@ class Product(models.Model):
     category = models.ForeignKey('Category', on_delete=models.CASCADE)
     creation_date = models.DateTimeField(auto_now_add=True)
     update_date = models.DateTimeField(auto_now=True)
+    deleted = models.BooleanField(default=False)
 
     def __str__(self):
         return self.nombre
