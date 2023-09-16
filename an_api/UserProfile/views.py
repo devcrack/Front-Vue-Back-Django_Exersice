@@ -13,6 +13,7 @@ from UserProfile.serializers import (CustomUserSerializer,
                                      LowLevelUserSerializer,
                                      LowestLevelUserSerializer)
 
+
 def email_confirm_redirect(request, key) -> HttpResponse:
     # return HttpResponseRedirect(
     #     f"{settings.EMAIL_CONFIRM_REDIRECT_BASE_URL}{key}/"
