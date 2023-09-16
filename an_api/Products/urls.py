@@ -7,9 +7,9 @@ from Products.views import CategoryView, InventoryView, ProductView
 
 router = SimpleRouter()
 
-router.register(r'categories', CategoryView)
-router.register(f'inventory-register', InventoryView)
-router.register(f'product', ProductView)
+router.register(r'categories', CategoryView, basename='category')
+router.register(f'inventory-registers', InventoryView, basename='inventory-register')
+router.register(f'products', ProductView, basename='product')
 
 
 urlpatterns = router.urls
