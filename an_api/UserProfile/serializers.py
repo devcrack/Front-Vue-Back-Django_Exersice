@@ -1,7 +1,6 @@
 # 3rd-party
 from dj_rest_auth.registration.serializers import RegisterSerializer
 from rest_framework import serializers
-from rest_framework.validators import UniqueValidator
 from django.contrib.auth import get_user_model
 from django.contrib.auth.models import Group
 
@@ -35,6 +34,6 @@ class LowestLevelUserSerializer(LowLevelUserSerializer):
 
     def validate_group(self, group):
         self.group_exist(group)
-        if not group in ['consumer', 'feeder', 'worker']:
+        if not group in ['consumer', 'worker']:
             raise serializers.ValidationError("The Provided Group is Not Valid")
         return group
