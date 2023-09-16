@@ -1,6 +1,5 @@
 # Local
 from UserProfile.views import (SignupLowLeveUserView,
-                               SignupLowestLeveUsers,
                                email_confirm_redirect,
                                password_reset_confirm_redirect)
 # 3rd-party
@@ -15,5 +14,5 @@ urlpatterns = [
     # Not exposed for security Issues
     # path('', CustomSignupView.as_view(), name='custom_rest_register'),
     path('user/', SignupLowLeveUserView.as_view(), name='low_level_rest_register'),
-    path('org-user/', SignupLowestLeveUsers.as_view(), name='lowest_level_rest_register')
+    # path('org-user/', SignupLowestLeveUsers.as_view(), name='lowest_level_rest_register')
 ]

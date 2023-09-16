@@ -10,8 +10,7 @@ from rest_framework.permissions import IsAuthenticated
 # Local
 from an_api.base_permissions import HasGroupPermission
 from UserProfile.serializers import (CustomUserSerializer,
-                                     LowLevelUserSerializer,
-                                     LowestLevelUserSerializer)
+                                     LowLevelUserSerializer)
 
 
 def email_confirm_redirect(request, key) -> HttpResponse:
@@ -35,6 +34,7 @@ class CustomSignupView(RegisterView):
 class SignupLowLeveUserView(RegisterView):
     serializer_class = LowLevelUserSerializer
     permission_classes = [IsAuthenticated, HasGroupPermission]
+    required_groups = {'POST': ['manager', ]}
 
     def __get_group(self, group_name):
         return Group.objects.filter(name=group_name).first()
@@ -47,9 +47,5 @@ class SignupLowLeveUserView(RegisterView):
         user.groups.add(group)
         return Response(status=status.HTTP_201_CREATED)
 
-
-class SignupLowestLeveUsers(SignupLowLeveUserView):
-    required_groups = {'POST': ['manager', ]}
-    serializer_class = LowestLevelUserSerializer
 
 

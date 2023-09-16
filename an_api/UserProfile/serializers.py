@@ -21,19 +21,16 @@ class LowLevelUserSerializer(CustomUserSerializer):
     group = serializers.CharField(max_length=8, allow_blank=False, required=True)
 
     @staticmethod
-    def group_exist(group):
+    def __group_exist(group):
         if not Group.objects.filter(name=group).exists():
             raise serializers.ValidationError("Provided Group Doesn't Exist")
 
     def validate_group(self, group):
-        self.group_exist(group)
-        return group
+        self.__group_exist(group)
 
+        user = self.context['request'].user
 
-class LowestLevelUserSerializer(LowLevelUserSerializer):
-
-    def validate_group(self, group):
-        self.group_exist(group)
-        if not group in ['consumer', 'worker']:
-            raise serializers.ValidationError("The Provided Group is Not Valid")
+        if not user.is_staff:
+            if not group in ['consumer', 'worker']:
+                raise serializers.ValidationError("The Provided Group is Not Valid")
         return group
