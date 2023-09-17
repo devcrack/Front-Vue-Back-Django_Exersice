@@ -7,6 +7,10 @@ from Products.models import (Category,
 class ProductAdmin(admin.ModelAdmin):
     model = Product
     search_fields = ['branch__name', 'category__name', 'name', 'stock']
+    list_display = ['name', 'category']
+
+    def categrory(self, product):
+        return product.category.name
 
 
 class InventoryRegisterAdmin(admin.ModelAdmin):
