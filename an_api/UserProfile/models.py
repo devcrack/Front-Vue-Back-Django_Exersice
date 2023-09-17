@@ -14,6 +14,8 @@ class CustomUser(AbstractUser):
     branch = models.ForeignKey(Branch, on_delete=models.CASCADE, null=True, blank=True)
     # Overriding email field
     email = models.EmailField(_("email address"), blank=False, unique=True)
+    created_by = models.ForeignKey('self', on_delete=models.SET_NULL, null=True, blank=True,
+                                   related_name='created_users')
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
     # Using a custom query manager for this model
