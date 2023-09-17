@@ -5,7 +5,7 @@ from django.contrib.auth import get_user_model
 from django.contrib.auth.models import Group
 
 
-class CustomUserSerializer(RegisterSerializer):
+class CustomUserRegisterSerializer(RegisterSerializer):
     first_name = serializers.CharField(max_length=150, allow_blank=False, required=True)
     last_name = serializers.CharField(max_length=150, allow_blank=False, required=True)
     email = serializers.EmailField(allow_blank=False)
@@ -17,7 +17,7 @@ class CustomUserSerializer(RegisterSerializer):
         return email
 
 
-class LowLevelUserSerializer(CustomUserSerializer):
+class LowLevelUserSerializer(CustomUserRegisterSerializer):
     group = serializers.CharField(max_length=8, allow_blank=False, required=True)
 
     @staticmethod
@@ -34,3 +34,16 @@ class LowLevelUserSerializer(CustomUserSerializer):
             if not group in ['consumer', 'worker']:
                 raise serializers.ValidationError("The Provided Group is Not Valid")
         return group
+
+
+class CustomUserSerializer(serializers.ModelSerializer):
+    role = serializers.SerializerMethodField()
+
+    class Meta:
+        model = get_user_model()
+        fields = ['first_name', 'last_name', 'email', 'role']
+
+    @staticmethod
+    def get_role(obj):
+        group = obj.groups.all().first()
+        return group.name
