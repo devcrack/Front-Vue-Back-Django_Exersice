@@ -23,3 +23,13 @@ class ProductModelSerializer(ModelSerializer):
 
     class Meta:
         model = Product
+        fields = '__all__'
+
+    def create(self, validated_data):
+        stock = validated_data.get('stock', 0)
+        instance = super().create(validated_data)
+        if stock:
+            InventoryRegister.objects.create(product=instance, quantity=stock, tipo='entry')
+
+        return instance
+
