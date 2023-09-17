@@ -19,7 +19,7 @@ class Product(models.Model):
     deleted = models.BooleanField(default=False)
 
     def __str__(self):
-        return self.nombre
+        return self.name
 
 
 class Category(models.Model):
