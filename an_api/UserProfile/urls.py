@@ -10,7 +10,7 @@ from UserProfile.views import (SignupLowLeveUserView,
 
 router = SimpleRouter()
 
-router.register('users-list', CustomUserListView, basename='user-detail')
+router.register('users-list', CustomUserListView, basename='user')
 
 urlpatterns = [
     path('registration/verify-email/', VerifyEmailView.as_view(), name='rest_verify_email'),
