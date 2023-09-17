@@ -41,7 +41,7 @@ class CustomUserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = get_user_model()
-        fields = ['first_name', 'last_name', 'email', 'role']
+        fields = ['id', 'first_name', 'last_name', 'email', 'role']
 
     @staticmethod
     def get_role(obj):
