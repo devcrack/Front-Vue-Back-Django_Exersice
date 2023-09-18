@@ -17,7 +17,7 @@ class InventoryRegisterAdmin(admin.ModelAdmin):
     model = InventoryRegister
     search_fields = ['product__name', 'type', 'register_date']
     list_display = ['product', 'type', 'register_date']
-
+    ordering = ['register_date']
 
 class CategoryAdmin(admin.ModelAdmin):
     model = Category
