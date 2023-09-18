@@ -1,18 +1,15 @@
 # stdl-lib
-import json
 
 # 3rd-party
 import pytest
-from django.contrib.auth.models import Group
 from django.urls import reverse
 from rest_framework import status
-from rest_framework.test import APIClient
 from rest_framework.authtoken.models import Token
 
-from boilerplate import (create_super_user,
-                         create_token,
-                         create_user,
-                         get_authenticated_client)
+from utils.boilerplate import (create_super_user,
+                               create_token,
+                               create_user,
+                               get_authenticated_client)
 
 pytestmark = pytest.mark.django_db
 
