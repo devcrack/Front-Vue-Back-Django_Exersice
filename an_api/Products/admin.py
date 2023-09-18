@@ -7,15 +7,16 @@ from Products.models import (Category,
 class ProductAdmin(admin.ModelAdmin):
     model = Product
     search_fields = ['branch__name', 'category__name', 'name', 'stock']
-    list_display = ['name', 'category']
+    list_display = ['name', 'category', 'stock', 'active']
 
-    def categrory(self, product):
-        return product.category.name
+    def active(self, product):
+        return not product.deleted
 
 
 class InventoryRegisterAdmin(admin.ModelAdmin):
     model = InventoryRegister
     search_fields = ['product__name', 'type', 'register_date']
+    list_display = ['product', 'type', 'register_date']
 
 
 class CategoryAdmin(admin.ModelAdmin):
