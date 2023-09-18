@@ -22,6 +22,9 @@ from Products.serializers import (CategoryModelSerializer,
 class ProductBaseView(ModelViewSet):
     permission_classes = [IsAuthenticated, HasGroupPermission]
     required_groups = {'POST': ['manager', 'worker'],
+                       'PUT': ['manager', 'worker'],
+                       'PATCH': ['manager', 'worker'],
+                       'DELETE': ['manager'],
                        'GET': ['manager', 'worker', 'consumer']}
 
 
@@ -32,11 +35,7 @@ class CategoryView(ProductBaseView):
 
 class ProductView(ProductBaseView):
     serializer_class = ProductCreatorModelSerializer
-    required_groups = required_groups = {'POST': ['manager', 'worker'],
-                                         'PUT': ['manager', 'worker'],
-                                         'PATCH': ['manager', 'worker'],
-                                         'DELETE': ['manager'],
-                                         'GET': ['manager', 'worker', 'consumer']}
+
     queryset = Product.objects.all()
 
     def get_serializer_class(self):
