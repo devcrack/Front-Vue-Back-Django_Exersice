@@ -34,7 +34,8 @@ class Category(models.Model):
 class InventoryRegister(models.Model):
 
     type_choices = [('entry', 'entry'),
-                    ('issue', 'issue')]
+                    ('issue', 'issue'),
+                    ('deleted', 'deleted')]
 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     product = models.ForeignKey('Product', on_delete=models.CASCADE)
@@ -43,4 +44,4 @@ class InventoryRegister(models.Model):
     register_date = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f"{self.product.name} - {self.type} ({self.register_date})"
+        return f"{self.product.name}"
