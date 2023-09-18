@@ -4,7 +4,7 @@ POST http://127.0.0.1:8000/an_api/auth/login/
 Content-Type: application/json
 
 {
-  "email": "toro_max@mail.com",
+  "email": "pili@mail.com",
   "password": "mientras123"
 }
 
@@ -41,15 +41,15 @@ Content-Type: application/json
 # Register a Manager User. Authetication must be of staff or Manager User
 POST http://127.0.0.1:8000/an_api/registration/user/
 Content-Type: application/json
-Authorization: Token 53f1bcacba5494005b2cad4c10038c834aa49d7e
+Authorization: Token 940a2ed30427d829f7ffe05a02f6f096f9fe5da7
 
 {
-  "username": "Jose",
-  "email": "jose@mail.com",
+  "username": "pili",
+  "email": "pili@mail.com",
   "password1": "mientras123",
   "password2": "mientras123",
-  "first_name": "Jose",
-  "last_name": "Max",
+  "first_name": "angelica",
+  "last_name": "Alvarez",
   "group": "consumer"
 }
 
@@ -63,5 +63,10 @@ Content-Type: application/json
 }
 
 
+### users-list
+GET http://127.0.0.1:8000/an_api/users-list/
+Authorization: Token 53384373dafdb8cc9bfee28b96a5354309190ea1
 
-
+### user-detail
+GET http://127.0.0.1:8000/an_api/users-list/09a0d5a4-dc47-4f12-8755-334273534352/
+Authorization: Token 53384373dafdb8cc9bfee28b96a5354309190ea1

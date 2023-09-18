@@ -1,8 +1,74 @@
-### /an_api/categories/
+### Create Category
 POST http://127.0.0.1:8000/an_api/categories/
 Content-Type: application/json
-Authorization: Token 53f1bcacba5494005b2cad4c10038c834aa49d7e
+Authorization: Token 311f62239c22987c49d07adede6757974503826d
 
 {
-  "name": "Ropa"
+  "name": "Juguetes"
 }
+
+### List all Categories
+GET http://127.0.0.1:8000/an_api/categories/
+Content-Type: application/json
+Authorization: Token 311f62239c22987c49d07adede6757974503826d
+
+### List category-detail
+GET http://127.0.0.1:8000/an_api/categories/2c25a543-d513-440b-93ef-8b9b0ed9bb9e/
+Authorization: Token 311f62239c22987c49d07adede6757974503826d
+
+
+### Create Product
+POST http://127.0.0.1:8000/an_api/products/
+Content-Type: application/json
+Authorization: Token 613a7628f6f7bfb1cf133d18e439b6d13b16c7e6
+
+{
+  "name": "Smartphone",
+  "price": 5300,
+  "stock": 60,
+  "category": "ff7aa70f-8e75-47f7-8527-1f3f026ed30j"
+}
+
+
+### Partial Updated Product
+PATCH http://127.0.0.1:8000/an_api/products/338dcd44-c260-4fc9-982a-15053ac7d036/
+Content-Type: application/json
+Authorization: Token 613a7628f6f7bfb1cf133d18e439b6d13b16c7e6
+
+{
+  "stock": "37"
+}
+
+### Total  Updated Product
+PUT http://127.0.0.1:8000/an_api/products/338dcd44-c260-4fc9-982a-15053ac7d036/
+Content-Type: application/json
+Authorization: Token 613a7628f6f7bfb1cf133d18e439b6d13b16c7e6
+
+{
+  "name": "Smartphone Xiaomi",
+  "price": 5600,
+  "category": "ff7aa70f-8e75-47f7-8527-1f3f026ed30d"
+}
+
+
+
+### Get Products
+GET http://127.0.0.1:8000/an_api/products/
+Authorization: Token 613a7628f6f7bfb1cf133d18e439b6d13b16c7e6
+
+### Product Detail
+GET http://127.0.0.1:8000/an_api/products/338dcd44-c260-4fc9-982a-15053ac7d036/
+Authorization: Token 613a7628f6f7bfb1cf133d18e439b6d13b16c7e6
+
+
+### Delete Product
+DELETE http://127.0.0.1:8000/an_api/products/338dcd44-c260-4fc9-982a-15053ac7d036/
+Authorization: Token 613a7628f6f7bfb1cf133d18e439b6d13b16c7e6
+
+
+### List Product Inventory
+GET http://127.0.0.1:8000/an_api/inventory-register/338dcd44-c260-4fc9-982a-15053ac7d036/
+Authorization: Token 613a7628f6f7bfb1cf133d18e439b6d13b16c7e6
+
+
+

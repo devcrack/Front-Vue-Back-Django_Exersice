@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'dj_rest_auth.registration',
+    'drf_spectacular',
     # 'corsheaders',
     # Local
     'UserProfile.apps.UserprofileConfig',
@@ -173,7 +174,15 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework.authentication.BasicAuthentication',
         'rest_framework.authentication.TokenAuthentication',
-    ]
+    ],
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
+}
+
+# About DRF Spectacular
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'Backend Test',
+    'DESCRIPTION': 'A simple API Backend Test',
+    'VERSION': '1.0'
 }
 # Django all auth
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
@@ -186,7 +195,7 @@ ACCOUNT_EMAIL_REQUIRED = True
 #     "http://localhost:8000",]
 #
 # CORS_ORIGIN_ALLOW_ALL = True
-# CORS_ALLOW_CREDENTIALS = True
+# CORS_ALLOW_CREDENTIALS = Truex
 
 REST_AUTH = {
     'SESSION_LOGIN': False
