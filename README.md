@@ -96,3 +96,34 @@ El servidor se ejecutará en http://localhost:8000/ de forma predeterminada.
 - Acceder a la documentacion del API ingresa en tu navegador: 
 - http://127.0.0.1:8000/an_api/schema/redoc/
 - http://127.0.0.1:8000/an_api/schema/swagger-ui/
+
+
+## Ejecutar Pruebas
+
+Desde el directorio Raiz del proyecto: ```an_api/```
+ejecutar: ``pytest -s -v``
+Esto ejecutara automaticamente las pruebas que se tengan escritas en el proyecto .
+Si todo va bien tendremos una salida como la siguiente:
+```bash
+UserProfile/tests/test_user_profile.py::test_register_manager_user_should_succed Creating test database for alias 'default'...
+PASSED
+UserProfile/tests/test_user_profile.py::test_login_success PASSED
+UserProfile/tests/test_user_profile.py::test_logout_success PASSED
+UserProfile/tests/test_user_profile.py::test_get_user_detail_should_pass PASSEDDestroying test database for alias 'default'...
+
+
+===================================================================================== 4 passed in 4.96s ======================================================================================
+
+
+```
+
+En caso de posibles errores hacer: 
+``bash
+export DJANGO_SETTINGS_MODULE=an_api.settings
+``
+Asi establecemos la variable de entorno  DJANGO_SETTINGS_MODULE con el 
+valor an_api.settings. 
+Esto le indica a Django cuál es el archivo de configuración de 
+ajustes que debe cargar cuando se ejecuten comandos de 
+Django desde la línea de comandos y en teoria deberiamos de poder ejecutar 
+nuestras pruebas escritas con pytest sin ningun problema.

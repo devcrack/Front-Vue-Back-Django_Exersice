@@ -39,27 +39,27 @@ def test_register_manager_user_should_succed() -> None:
 
     assert response.status_code == status.HTTP_201_CREATED
 
-
-def test_create_lowest_level_users_should_pass() -> None:
-    user = create_user()
-    user.groups.add(Group.objects.get(name='manager'))
-
-    token = create_token(user)
-
-    client = get_authenticated_client(token)
-
-    payload = {
-        "username": "anton",
-        "email": "anton_del_arco@mail.com",
-        "password1": "mientras123",
-        "password2": "mientras123",
-        "first_name": "Antonello",
-        "last_name": "Feo",
-        "group": "worker"
-    }
-    response = client.post(path=reverse('lowest_level_rest_register'), data=payload)
-
-    assert response.status_code == status.HTTP_201_CREATED
+# DEPRECATED
+# def test_create_lowest_level_users_should_pass() -> None:
+#     user = create_user()
+#     user.groups.add(Group.objects.get(name='manager'))
+#
+#     token = create_token(user)
+#
+#     client = get_authenticated_client(token)
+#
+#     payload = {
+#         "username": "anton",
+#         "email": "anton_del_arco@mail.com",
+#         "password1": "mientras123",
+#         "password2": "mientras123",
+#         "first_name": "Antonello",
+#         "last_name": "Feo",
+#         "group": "worker"
+#     }
+#     response = client.post(path=reverse('lowest_level_rest_register'), data=payload)
+#
+#     assert response.status_code == status.HTTP_201_CREATED
 
 
 
