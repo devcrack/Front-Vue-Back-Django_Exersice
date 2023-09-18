@@ -127,3 +127,29 @@ Esto le indica a Django cuál es el archivo de configuración de
 ajustes que debe cargar cuando se ejecuten comandos de 
 Django desde la línea de comandos y en teoria deberiamos de poder ejecutar 
 nuestras pruebas escritas con pytest sin ningun problema.
+
+
+## Opcional Ejecutar Proyecto con Docker
+
+Abre una terminal y navega al directorio que contiene tu proyecto Django y el Dockerfile.
+
+Construye la imagen del contenedor utilizando el siguiente comando:
+
+```bash
+docker build -t an/api/DockerFile/DockerFile
+```
+Reemplaza nombre-de-la-imagen con un nombre adecuado para tu imagen.
+
+Una vez que la imagen se haya construido correctamente, 
+puedes ejecutar un contenedor basado en esa imagen con el 
+siguiente comando:
+
+```bash
+docker run -p 8000:8000 nombre-de-la-imagen
+```
+Esto mapea el puerto 8000 del contenedor al puerto 8000 del host.
+
+Tu proyecto Django debería estar ahora en funcionamiento 
+en un contenedor Docker. Puedes acceder a él en tu navegador 
+web utilizando http://localhost:8000/.
+
