@@ -56,6 +56,7 @@ INSTALLED_APPS = [
     'UserProfile.apps.UserprofileConfig',
     'Products.apps.ProductsConfig',
     'Branches.apps.BranchesConfig',
+    'Tickets.apps.TicketsConfig',
 ]
 
 MIDDLEWARE = [
