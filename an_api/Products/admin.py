@@ -19,6 +19,7 @@ class InventoryRegisterAdmin(admin.ModelAdmin):
     list_display = ['product', 'type', 'register_date']
     ordering = ['register_date']
 
+
 class CategoryAdmin(admin.ModelAdmin):
     model = Category
     search_fields = ['name']

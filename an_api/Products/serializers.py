@@ -1,29 +1,46 @@
 # 3rd-party
-from rest_framework.serializers import ModelSerializer
+from rest_framework import serializers
 # Local
 from Products.models import (Category,
                              InventoryRegister,
                              Product)
 
 
-class CategoryModelSerializer(ModelSerializer):
+class CategoryModelSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Category
         fields = '__all__'
 
 
-class InventoryModelSerializer(ModelSerializer):
+class InventoryModelSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = InventoryRegister
+        fields = '__all__'
 
 
-class ProductModelSerializer(ModelSerializer):
+class DetailProductReprModelSerializer(serializers.ModelSerializer):
+    category = CategoryModelSerializer(many=False)
 
     class Meta:
         model = Product
-        fields = '__all__'
+        exclude = ['deleted']
+
+
+class ProductReprModelSerializer(DetailProductReprModelSerializer):
+
+    class Meta:
+        model = Product
+        fields = ['id', 'name', 'description', 'price', 'stock', 'category']
+
+
+class ProductCreatorModelSerializer(serializers.ModelSerializer):
+    category = serializers.PrimaryKeyRelatedField(queryset=Category.objects.all(), many=False, required=True)
+
+    class Meta:
+        model = Product
+        fields = ['name', 'description', 'price', 'stock', 'category']
 
     def create(self, validated_data):
         stock = validated_data.get('stock', 0)
@@ -50,6 +67,8 @@ class ProductModelSerializer(ModelSerializer):
         instance.save()
 
         return instance
+
+
 
 
 
